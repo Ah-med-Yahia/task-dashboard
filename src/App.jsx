@@ -1,17 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import ProjectTasks from "./pages/ProjectTasks";
-import AddTask from "./pages/AddTask";
-import AddProject from "./pages/AddProject";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Dashboard from './pages/Dashboard';
+import ProjectTasks from './pages/ProjectTasks';
+import AddProject from './pages/AddProject';
+import AddTask from './pages/AddTask';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/project/:id" element={<ProjectTasks />} />
-        <Route path="/add-task" element={<AddTask />} />
         <Route path="/add-project" element={<AddProject />} />
+        <Route path="/add-task" element={<AddTask />} />
       </Routes>
     </BrowserRouter>
   );
