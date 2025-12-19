@@ -1,4 +1,4 @@
-
+// src/api/projectsApi.js
 const BASE_URL = 'https://694487d37dd335f4c360972c.mockapi.io/api/v1';
 
 export const fetchProjects = async () => {
