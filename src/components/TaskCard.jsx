@@ -51,7 +51,7 @@ export default function TaskCard({
           onChange={e => updateTaskStatus(task.id, e.target.value)}
         >
           <option value="todo">To Do</option>
-          <option value="progress">In Progress</option>
+          <option value="in-progress">In Progress</option>
           <option value="done">Done</option>
         </select>
       </div>

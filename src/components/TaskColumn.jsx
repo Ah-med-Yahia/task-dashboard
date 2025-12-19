@@ -3,15 +3,13 @@ import TaskCard from "./TaskCard";
 export default function TaskColumn({
   title,
   status,
-  projectId,
   tasks,
   updateTaskStatus,
   deleteTask,
   editTask
 }) {
-  const filtered = tasks.filter(
-    t => t.projectId == projectId && t.status === status
-  );
+  // فقط فلترة حسب status
+  const filtered = tasks.filter(t => t.status === status);
 
   return (
     <div className="column">
