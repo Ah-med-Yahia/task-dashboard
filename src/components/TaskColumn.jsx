@@ -1,39 +1,37 @@
-import TaskCard from './TaskCard';
+import TaskCard from "./TaskCard";
 
-const TaskColumn = ({ title, tasks, status, deleteTask, moveTask, bgColor }) => {
-  const getNextStatus = (currentStatus) => {
-    if (currentStatus === 'todo') return 'in-progress';
-    if (currentStatus === 'in-progress') return 'done';
-    return null;
-  };
-
-  const nextStatus = getNextStatus(status);
+export default function TaskColumn({
+  title,
+  status,
+  projectId,
+  tasks,
+  updateTaskStatus,
+  deleteTask,
+  editTask
+}) {
+  const filtered = tasks.filter(
+    t => t.projectId == projectId && t.status === status
+  );
 
   return (
-    <div className={`${bgColor} rounded-lg p-4 min-h-96`}>
-      <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between">
-        <span>{title}</span>
-        <span className="text-sm font-normal text-gray-500 bg-white px-2 py-1 rounded">
-          {tasks.length}
-        </span>
-      </h2>
+    <div className="column">
+      <h3>{title}</h3>
 
-      <div className="space-y-3">
-        {tasks.map(task => (
-          <TaskCard
-            key={task.id}
-            task={task}
-            onDelete={() => deleteTask(task.id)}
-            onMove={
-              nextStatus
-                ? () => moveTask(task.id, nextStatus)
-                : null
-            }
-          />
-        ))}
-      </div>
+      {filtered.length === 0 && (
+        <p style={{ textAlign: "center", color: "#9ca3af" }}>
+          No tasks
+        </p>
+      )}
+
+      {filtered.map(task => (
+        <TaskCard
+          key={task.id}
+          task={task}
+          updateTaskStatus={updateTaskStatus}
+          deleteTask={deleteTask}
+          editTask={editTask}
+        />
+      ))}
     </div>
   );
-};
-
-export default TaskColumn;
+}
