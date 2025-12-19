@@ -4,7 +4,9 @@ export default function TaskCard({
   task,
   updateTaskStatus,
   deleteTask,
-  editTask
+  editTask,
+  setDraggedTask,
+  isDragOver = false
 }) {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(task.title);
@@ -19,7 +21,10 @@ export default function TaskCard({
   return (
     <>
       {/* ===== TASK CARD ===== */}
-      <div className="task-card">
+      <div className={`task-card ${isDragOver ? "drag-over" : ""}`}
+        draggable
+        onDragStart={() => setDraggedTask(task)}
+      >
         <div className="task-header">
           <h4 className="task-title">{task.title}</h4>
 

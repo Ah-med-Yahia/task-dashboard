@@ -336,4 +336,245 @@ button:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(14, 165, 233, 0.4);
 }
-/*--------------------------------------------------------------ZAMZAM--------------------------------------------*/
+
+.search-input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 16px 0 20px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #6366f1; 
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.task-card {
+  cursor: grab;
+}
+
+.task-card:active {
+  cursor: grabbing;
+  opacity: 0.7;
+}
+
+.column:hover {
+  background: rgba(14, 165, 233, 0.08);
+}
+
+
+.task-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #cbd5f5;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  background-color: #f0f9ff; 
+  color: #0284c7;
+}
+
+body.dark {
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+
+body.dark .project-title {
+  color: #38bdf8;
+}
+
+body.dark .add-btn {
+  color: #ffffff;
+}
+
+body.dark .column {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+body.dark .column:hover {
+  background: rgba(14, 165, 233, 0.2); 
+}
+
+body.dark a {
+  color: #38bdf8;
+}
+
+body.dark nav {
+  border-bottom: 1px solid #1e293b;
+}
+
+body.dark .card {
+  background: #020617;
+  border: 1px solid #1e293b;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .card p {
+  color: #94a3b8;
+}
+
+body.dark .column {
+  background: #020617;
+  border: 1px solid #1e293b;
+}
+
+body.dark .column h3 {
+  color: #38bdf8;
+}
+
+body.dark .task-card {
+  background: #020617;
+  border: 1px solid #1e293b;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .task-title {
+  color: #e5e7eb;
+}
+
+body.dark .task-desc {
+  color: #94a3b8;
+}
+
+body.dark .task-select {
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: #e5e7eb;
+}
+
+body.dark .task-select.todo {
+  background: rgba(2, 132, 199, 0.15);
+  color: #38bdf8;
+}
+
+body.dark .task-select.progress {
+  background: rgba(194, 65, 12, 0.15);
+  color: #fb923c;
+}
+
+body.dark .task-select.done {
+  background: rgba(4, 120, 87, 0.2);
+  color: #34d399;
+}
+
+body.dark .icon-btn.edit {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+body.dark .icon-btn.delete {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+body.dark .add-btn {
+  box-shadow: 0 12px 28px rgba(56, 189, 248, 0.25);
+}
+
+body.dark .form {
+  background: #020617;
+  border: 1px solid #1e293b;
+}
+
+body.dark .form h2 {
+  color: #e5e7eb;
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: #e5e7eb;
+}
+
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+  color: #64748b;
+}
+
+body.dark .search-input {
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: #e5e7eb;
+}
+
+body.dark .modal {
+  background: #020617;
+  border: 1px solid #1e293b;
+}
+
+body.dark .modal h3 {
+  color: #e5e7eb;
+}
+
+body.dark .modal-actions .cancel {
+  background: #1e293b;
+  color: #e5e7eb;
+}
+
+body.dark .modal-actions .cancel:hover {
+  background: #334155;
+}
+
+.dark-toggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 16px;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+body.dark .dark-toggle {
+  background: #1e293b;
+  color: #e5e7eb;
+}
+
+.dark-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: none;
+}
+
+body.dark .task-select {
+  background-color: #1e293b; 
+  color: #e5e7eb;           
+  border: 1px solid #334155;
+}
+
+body.dark .task-select.todo {
+  background-color: #1e3a8a; 
+  color: #bfdbfe;           
+}
+
+body.dark .task-select.progress {
+  background-color: #78350f; 
+  color: #fde68a;           
+}
+
+body.dark .task-select.done {
+  background-color: #064e3b; 
+  color: #a7f3d0;           
+}
+
+.task-card.drag-over {
+  border: 2px dashed #6366f1;
+  background-color: rgba(99, 102, 241, 0.1);
+}
