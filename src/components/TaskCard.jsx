@@ -1,38 +1,94 @@
-import { Trash2, MoveRight } from 'lucide-react';
+import { useState } from "react";
 
-const TaskCard = ({ task, onDelete, onMove }) => {
+export default function TaskCard({
+  task,
+  updateTaskStatus,
+  deleteTask,
+  editTask
+}) {
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  const [status, setStatus] = useState(task.status);
+
+  const save = () => {
+    editTask({ ...task, title, description, status });
+    setOpen(false);
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow p-4 border border-gray-200 hover:shadow-md transition">
-      <h4 className="font-semibold text-gray-800 mb-2">
-        {task.title}
-      </h4>
+    <>
+      {/* ===== TASK CARD ===== */}
+      <div className="task-card">
+        <div className="task-header">
+          <h4 className="task-title">{task.title}</h4>
 
-      <p className="text-sm text-gray-600 mb-3">
-        {task.description}
-      </p>
+          <div className="task-actions">
+            <button
+              className="icon-btn edit"
+              title="Edit"
+              onClick={() => setOpen(true)}
+            >
+              Edit
+            </button>
 
-      <div className="flex items-center justify-between">
-        <button
-          onClick={onDelete}
-          className="text-red-500 hover:text-red-700 transition"
-          title="Delete task"
+            <button
+              className="icon-btn delete"
+              title="Delete"
+              onClick={() => deleteTask(task.id)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <p className="task-desc">{task.description}</p>
+
+        {/* ===== STATUS SELECT ===== */}
+        <select
+          className={`task-select ${task.status}`}
+          value={task.status}
+          onChange={e => updateTaskStatus(task.id, e.target.value)}
         >
-          <Trash2 className="w-4 h-4" />
-        </button>
-
-        {onMove && (
-          <button
-            onClick={onMove}
-            className="text-blue-600 hover:text-blue-800 transition flex items-center space-x-1 text-sm"
-            title="Move to next column"
-          >
-            <span>Move</span>
-            <MoveRight className="w-4 h-4" />
-          </button>
-        )}
+          <option value="todo">To Do</option>
+          <option value="progress">In Progress</option>
+          <option value="done">Done</option>
+        </select>
       </div>
-    </div>
-  );
-};
 
-export default TaskCard;
+      {/* ===== EDIT MODAL ===== */}
+      {open && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Edit Task</h3>
+
+            <input
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              placeholder="Title"
+            />
+
+            <textarea
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              placeholder="Description"
+            />
+
+            <select value={status} onChange={e => setStatus(e.target.value)}>
+              <option value="todo">To Do</option>
+              <option value="progress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+
+            <div className="modal-actions">
+              <button onClick={save}>Save</button>
+              <button className="cancel" onClick={() => setOpen(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
