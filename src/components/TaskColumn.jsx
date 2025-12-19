@@ -1,5 +1,6 @@
 import TaskCard from "./TaskCard";
 
+
 export default function TaskColumn({
   title,
   status,
@@ -10,26 +11,27 @@ export default function TaskColumn({
 }) {
   // فقط فلترة حسب status
   const filtered = tasks.filter(t => t.status === status);
-
   return (
-    <div className="column">
-      <h3>{title}</h3>
+    <>
+      <div className="column">
+        <h3>{title}</h3>
 
-      {filtered.length === 0 && (
-        <p style={{ textAlign: "center", color: "#9ca3af" }}>
-          No tasks
-        </p>
-      )}
+        {filtered.length === 0 && (
+          <p style={{ textAlign: "center", color: "#9ca3af" }}>
+            No tasks
+          </p>
+        )}
 
-      {filtered.map(task => (
-        <TaskCard
-          key={task.id}
-          task={task}
-          updateTaskStatus={updateTaskStatus}
-          deleteTask={deleteTask}
-          editTask={editTask}
-        />
-      ))}
-    </div>
+        {filtered.map(task => (
+          <TaskCard
+            key={task.id}
+            task={task}
+            updateTaskStatus={updateTaskStatus}
+            deleteTask={deleteTask}
+            editTask={editTask}
+          />
+        ))}
+      </div>
+    </>
   );
 }

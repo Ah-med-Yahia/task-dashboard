@@ -37,7 +37,15 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Dashboard projects={projects} tasks={tasks} />} />
+        <Route 
+          path="/" 
+          element={
+            <Dashboard 
+            projects={projects} 
+            tasks={tasks}
+            />
+          }
+        />
         <Route
           path="/project/:id"
           element={
