@@ -1,40 +1,60 @@
-import TaskColumn from '../components/TaskColumn';
+import { useParams, Link } from "react-router-dom";
+import TaskColumn from "../components/TaskColumn";
 
-const ProjectTasks = ({ tasks, deleteTask, moveTask }) => {
-  const todo = tasks.filter(t => t.status === 'todo');
-  const inProgress = tasks.filter(t => t.status === 'in-progress');
-  const done = tasks.filter(t => t.status === 'done');
+export default function ProjectTasks({
+  projects,
+  tasks,
+  updateTaskStatus,
+  deleteTask,
+  editTask,
+}) {
+  const { id } = useParams();
+  const project = projects.find((p) => p.id == id);
+
+  if (!project) {
+    return <h2 style={{ textAlign: "center" }}>Project not found</h2>;
+  }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <TaskColumn
-        title="To Do"
-        tasks={todo}
-        status="todo"
-        deleteTask={deleteTask}
-        moveTask={moveTask}
-        bgColor="bg-gray-100"
-      />
+    <div className="container">
+      <div className="dashboard-header">
+        <h2>{project.title}</h2>
+        <Link to="/add-task" className="add-btn">
+          + Add Task
+        </Link>
+      </div>
 
-      <TaskColumn
-        title="In Progress"
-        tasks={inProgress}
-        status="in-progress"
-        deleteTask={deleteTask}
-        moveTask={moveTask}
-        bgColor="bg-blue-50"
-      />
+      <div className="columns">
+        <TaskColumn
+          title="To Do"
+          status="todo"
+          projectId={id}
+          tasks={tasks}
+          updateTaskStatus={updateTaskStatus}
+          deleteTask={deleteTask}
+          editTask={editTask}
+        />
 
-      <TaskColumn
-        title="Done"
-        tasks={done}
-        status="done"
-        deleteTask={deleteTask}
-        moveTask={moveTask}
-        bgColor="bg-green-50"
-      />
+        <TaskColumn
+          title="In Progress"
+          status="progress"
+          projectId={id}
+          tasks={tasks}
+          updateTaskStatus={updateTaskStatus}
+          deleteTask={deleteTask}
+          editTask={editTask}
+        />
+
+        <TaskColumn
+          title="Done"
+          status="done"
+          projectId={id}
+          tasks={tasks}
+          updateTaskStatus={updateTaskStatus}
+          deleteTask={deleteTask}
+          editTask={editTask}
+        />
+      </div>
     </div>
   );
-};
-
-export default ProjectTasks;
+}
