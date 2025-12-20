@@ -4,11 +4,12 @@ import { fetchProjects } from "../api/projectsApi";
 import ProjectCard from "../components/ProjectCard";
 
 export default function Dashboard({ projects, setProjects, tasks }) {
-  useEffect(() => {
-    if (projects.length === 0) {
-      fetchProjects().then(setProjects);
-    }
-  }, [projects.length, setProjects]);
+useEffect(() => {
+  if (projects.length === 0) {
+    fetchProjects().then(setProjects);
+  }
+}, []); 
+
 
   return (
     <div className="container">
